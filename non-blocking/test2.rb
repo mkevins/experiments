@@ -21,6 +21,7 @@ end
 
 def draw_time(menu)
   menu.setpos(2, 10)
+  menu.attrset(A_NORMAL)
   menu.addstr Time.now.to_s
 end
 
@@ -34,7 +35,7 @@ while true
   ch = menu.getch
   case ch
   when 'w'
-    draw_info menu, 'move up'
+    draw_info menu, 'move up  '
     position -= 1
   when 's'
     draw_info menu, 'move down'
