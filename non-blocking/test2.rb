@@ -13,6 +13,18 @@ def draw_menu(menu, active_index=nil)
   end
 end
 
+def draw_corners(menu)
+  corners = %w{ ┏ ┗ ┓ ┛ }
+  p menu.maxy #weirdness here!
+  p menu.maxx
+  [0, menu.maxy].product[0, menu.maxx].each do |y, x|
+    #menu.setpos(y, x)
+    #menu.addstr corners.shift
+    #menu.addstr "t"
+
+  end
+end
+
 def draw_info(menu, text)
   menu.setpos(1, 10)
   menu.attrset(A_NORMAL)
@@ -28,7 +40,8 @@ end
 position = 0
 
 menu = Window.new(7,40,7,2)
-menu.box('|', '-')
+menu.box('┃', '━')
+# menu.box('\\', '/')
 menu.timeout = 0
 draw_menu(menu, position)
 while true
@@ -45,6 +58,7 @@ while true
   end
   position = 3 if position < 0
   position = 0 if position > 3
+  draw_corners(menu)
   draw_menu(menu, position)
   draw_time(menu)
 end
